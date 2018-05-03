@@ -1,5 +1,5 @@
 defmodule FileFinder do
-  def find_files_matches_needle(path, needle) do
+  def ls_r(path \\ ".") do
     cond do
       File.regular?(path) -> [path]
       File.dir?(path) ->
@@ -12,4 +12,4 @@ defmodule FileFinder do
   end
 end
 
-IO.puts FileFinder.find_files_matches_needle('/users/bastien/Sites/POO2/', /README.md/)
+IO.puts FileFinder.ls_r('/users/bastien/Sites/POO2/')

@@ -2,5 +2,5 @@
 
 Iterates to a folder, and match all the files that contains the needle.
 
-[Ruby](./FindByName.rb)
-[Elixir](./FindByName.ex)
+* [in Ruby](./FindByName.rb)
+* [in Elixir](./FindByName.ex)
