@@ -14,6 +14,8 @@ def find_files_by_needle (basePath, needle)
   return array
 end
 
+# Launch the search
 results = find_files_by_needle('/users/bastien/Sites/POO2/', /README.md/)
 
+# Puts results on console
 puts results
