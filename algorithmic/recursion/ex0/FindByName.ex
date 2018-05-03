@@ -1,15 +1,12 @@
 defmodule FileFinder do
-  def ls_r(path \\ ".") do
-    cond do
-      File.regular?(path) -> [path]
-      File.dir?(path) ->
-        File.ls!(path)
-        |> Enum.map(&Path.join(path, &1))
-        |> Enum.map(&ls_r/1)
-        |> Enum.concat
-      true -> []
-    end
+  def recursive(dir \\ ".", needle \\ ~r'README.md') do
+    array = []
+    Enum.each(File.ls!(dir), fn file ->
+      fname = "#{dir}/#{file}"
+      if !File.dir?(fname) && Regex.match?(needle, file), do: array ++ [fname]
+      if File.dir?(fname), do: recursive(fname)
+    end)
   end
 end
 
-IO.puts FileFinder.ls_r('/users/bastien/Sites/POO2/')
+IO.puts FileFinder.recursive('/users/bastien/Sites/POO2')

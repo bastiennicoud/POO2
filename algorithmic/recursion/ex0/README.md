@@ -1,6 +1,12 @@
 # Find files recursively
 
+## Part 1
+
 Iterates to a folder, and match all the files that contains the needle.
 
 * [in Ruby](./FindByName.rb)
 * [in Elixir](./FindByName.ex)
+
+## Part 2
+
+## Part 3
