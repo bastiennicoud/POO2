@@ -15,7 +15,7 @@ class List
       @firstNode.prev = nil
       @lastNode       = nil
     # If one element in the list
-    } elsif (@lastNode == nil) {
+    } elsif (!@firstNode.empty? && @lastNode.empty? {
       @lastNode       = Node.new(nodeValue)
       @lastNode.next  = nil
       @lastNode.prev  = @firstNode
@@ -37,7 +37,7 @@ class List
       @firstNode.prev = nil
       @lastNode       = nil
     # If one element in the list
-    } elsif (@lastNode == nil) {
+    } elsif (!@firstNode.empty? && @lastNode.empty?) {
       @lastNode       = @firstNode
       @firstNode      = Node.new(nodeValue)
       @firstNode.prev = nil
@@ -51,18 +51,57 @@ class List
     }
   end
 
+  # return the node value
   def getFirst
-    @firstNode
+    @firstNode.value
   end
 
+  # return the node value
   def getLast
-    @lastNode
+    @lastNode.value
   end
 
   def takeFirst
+    if (@firstNode.empty? && @lastNode.empty?) {
+      return nil
+    } elsif (!@firstNode.empty? && @lastNode.empty?) {
+      tmp        = @firstNode.value
+      @firstNode = nil
+      return tmp
+    } else {
+      tmp             = @firstNode.value
+      if (@firstNode.next == @lastNode) {
+        @firstNode      = @lastNode
+        @lastNode       = nil
+        @firstNode.prev = nil
+      } else {
+        @firstNode      = @firstNode.next
+        @firstNode.prev = nil
+      }
+      return tmp
+    }
+    return nil
   end
 
   def takeLast
+    if (@firstNode.empty? && @lastNode.empty?) {
+      return nil
+    } elsif (!@firstNode.empty? && @lastNode.empty?) {
+      tmp        = @firstNode.value
+      @firstNode = nil
+      return tmp
+    } else {
+      tmp = @lastNode.value
+      if (@lastNode.prev == @firstNode) {
+        @lastNode       = nil
+        @firstNode.next = nil
+      } else {
+        @lastNode = @lastNode.prev
+        @lastNode.next = nil
+      }
+      return tmp
+    }
+    return nil
   end
 
   def count

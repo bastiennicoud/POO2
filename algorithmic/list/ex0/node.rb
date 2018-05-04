@@ -10,7 +10,7 @@ class Node
     @prev = prevElement
   end
 
-  attr_accessor :next, :prev
+  attr_accessor :next, :prev, :value
 
   def first?
     if @prev == nil
