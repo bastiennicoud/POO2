@@ -1,12 +1,23 @@
 class List
 
+  @firstNode = Node;
+  @lastNode = Node;
+
   def initialize()
   end
 
-  def append(el)
+  def append(nodeValue)
+    # Check if the list is empty
+    if (@firstNode.empty? && @lastNode.empty?) {
+      # Create the element il all node
+      @firstNode = Node.new(nodeValue)
+      @firstNode.next = @firstNode
+      @firstNode.prev = @firstNode
+    }
+    Node.new(nodeValue)
   end
 
-  def prepend(el)
+  def prepend(nodeValue)
   end
 
   def getFirst

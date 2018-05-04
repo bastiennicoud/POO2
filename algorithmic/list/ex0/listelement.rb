@@ -1,3 +1,0 @@
-class ListElement
-  
-end
