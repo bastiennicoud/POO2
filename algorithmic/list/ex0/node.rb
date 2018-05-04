@@ -12,4 +12,12 @@ class Node
 
   attr_accessor :next, :prev
 
+  def first?
+    if @prev == nil
+  end
+
+  def last?
+    if @next == nil
+  end
+
 end
