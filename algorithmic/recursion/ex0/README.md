@@ -4,10 +4,7 @@
 
 Iterates to a folder, and match all the files that contains the needle.
 
-* [in Ruby](./FindByName.rb)
-* [in Elixir](./FindByName.ex)
-* [in JS](./FindByName.js)
-
-## Part 2
-
-## Part 3
+* [Ruby](./1findByName.rb)
+* [Elixir](./1findByName.ex)
+* [JS](./1findByName.js)
+* [Ruby oneliner](./1findByNameOneLiner.rb)

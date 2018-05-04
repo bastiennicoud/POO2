@@ -12,12 +12,24 @@ def find_files_by_needle (basePath, needle)
        array << path
       # In case of folder, recurse the function
       elsif File.directory? path
-        array << find_files_by_needle(path, needle)
+        array.concat(find_files_by_needle(path, needle))
       end
     end
   end
   # Return plain array with all matching files
-  return array
+  array
+end
+
+# Version with reduce
+def find_files_by_needle_reduce(starts, path)
+  Dir.glob(File.join(path, '*')).reduce([]) do |files, item|
+    if File.file?(item) && File.basename(item).start_with?(starts)
+      files << File.expand_path(item)
+    elsif File.directory?(item)
+      files.concat(find_files_by_needle_reduce(starts, item))
+    end
+    files
+  end
 end
 
 # Launch the search
