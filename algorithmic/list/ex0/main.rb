@@ -14,3 +14,9 @@ puts list.empty?
 toto = list.takeFirst
 puts toto
 puts list.count
+list.append('toto1')
+list.append('toto2')
+list.append('toto3')
+list.each do |el|
+  puts "Value: #{el}"
+end

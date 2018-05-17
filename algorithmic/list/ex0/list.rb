@@ -121,14 +121,10 @@ class List
   end
 
   def each
-    iterates(@firstNode)
-  end
-  
-  def iterates(node)
-    yield node.value
-    
-    if !node.next.nil?
-      iterates(node.next)
+    cursor = @firstNode
+    while cursor
+      yield cursor.value
+      cursor = cursor.next
     end
   end
 
