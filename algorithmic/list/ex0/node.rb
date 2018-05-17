@@ -6,18 +6,18 @@ class Node
 
   def initialize(value, nextNode = nil, prevNode = nil)
     @value = value
-    @next = nextElement
-    @prev = prevElement
+    @next = nextNode
+    @prev = prevNode
   end
 
-  attr_accessor :next, :prev, :value
+  attr_accessor(:next, :prev, :value)
 
   def first?
-    if @prev == nil
+    @prev == nil
   end
 
   def last?
-    if @next == nil
+    @next == nil
   end
 
 end

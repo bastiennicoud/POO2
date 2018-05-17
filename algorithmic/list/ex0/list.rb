@@ -1,54 +1,56 @@
 class List
 
-  @firstNode = nil;
-  @lastNode = nil;
-
   def initialize()
+    @firstNode = nil
+    @lastNode = nil
+    @nodeCount = 0
   end
 
   def append(nodeValue)
+    @nodeCount += 1
     # Check if the list is empty
-    if (@firstNode.empty? && @lastNode.empty?) {
+    if (@firstNode.nil? && @lastNode.nil?)
       # Create the element il all node
       @firstNode      = Node.new(nodeValue)
       @firstNode.next = nil
       @firstNode.prev = nil
       @lastNode       = nil
     # If one element in the list
-    } elsif (!@firstNode.empty? && @lastNode.empty? {
+    elsif (!@firstNode.nil? && @lastNode.nil?)
       @lastNode       = Node.new(nodeValue)
       @lastNode.next  = nil
       @lastNode.prev  = @firstNode
       @firstNode.next = @lastNode
     # Create a new element and add it to the end
-    } else {
+    else
       tmp       = Node.new(nodeValue)
       tmp.next  = nil
       tmp.prev  = @lastNode
       @lastNode = tmp
-    }
+    end
   end
 
   def prepend(nodeValue)
-    if (@firstNode.empty? && @lastNode.empty?) {
+    @nodeCount += 1
+    if (@firstNode.nil? && @lastNode.nil?)
       # Create the element il all node
       @firstNode      = Node.new(nodeValue)
       @firstNode.next = nil
       @firstNode.prev = nil
       @lastNode       = nil
     # If one element in the list
-    } elsif (!@firstNode.empty? && @lastNode.empty?) {
+    elsif (!@firstNode.nil? && @lastNode.nil?)
       @lastNode       = @firstNode
       @firstNode      = Node.new(nodeValue)
       @firstNode.prev = nil
       @firstNode.next = @lastNode
       @lastNode.prev  = @firstNode
-    } else {
+    else
       tmp      = Node.new(nodeValue)
       tmp.next = @firstNode
       tmp.prev = nil
       @firstNode = tmp
-    }
+    end
   end
 
   # return the node value
@@ -58,61 +60,76 @@ class List
 
   # return the node value
   def getLast
-    @lastNode.value
+    if @lastNode.nil?
+      @firstNode.value
+    else
+      @lastNode.value
+    end
   end
 
   def takeFirst
-    if (@firstNode.empty? && @lastNode.empty?) {
+    @nodeCount -= 1
+    if (@firstNode.nil? && @lastNode.nil?)
       return nil
-    } elsif (!@firstNode.empty? && @lastNode.empty?) {
+    elsif (!@firstNode.nil? && @lastNode.nil?)
       tmp        = @firstNode.value
       @firstNode = nil
       return tmp
-    } else {
-      tmp             = @firstNode.value
-      if (@firstNode.next == @lastNode) {
+    else
+      tmp = @firstNode.value
+      if (@firstNode.next == @lastNode)
         @firstNode      = @lastNode
         @lastNode       = nil
         @firstNode.prev = nil
-      } else {
+      else
         @firstNode      = @firstNode.next
         @firstNode.prev = nil
-      }
+      end
       return tmp
-    }
+    end
     return nil
   end
 
   def takeLast
-    if (@firstNode.empty? && @lastNode.empty?) {
+    @nodeCount -= 1
+    if (@firstNode.nil? && @lastNode.nil?)
       return nil
-    } elsif (!@firstNode.empty? && @lastNode.empty?) {
-      tmp        = @firstNode.value
+    elsif (!@firstNode.nil? && @lastNode.nil?)
+      tmp = @firstNode.value
       @firstNode = nil
       return tmp
-    } else {
+    else
       tmp = @lastNode.value
-      if (@lastNode.prev == @firstNode) {
-        @lastNode       = nil
+      if (@lastNode.prev == @firstNode)
+        @lastNode = nil
         @firstNode.next = nil
-      } else {
+      else
         @lastNode = @lastNode.prev
         @lastNode.next = nil
-      }
+      end
       return tmp
-    }
+    end
     return nil
   end
 
   def count
+    @nodeCount
   end
 
   def empty?
-    if (@firstNode.empty? && @lastNode.empty?)
+    (@firstNode.nil? && @lastNode.nil?)
   end
 
   def each
-    yield
+    iterates(@firstNode)
+  end
+  
+  def iterates(node)
+    yield node.value
+    
+    if !node.next.nil?
+      iterates(node.next)
+    end
   end
 
 end
