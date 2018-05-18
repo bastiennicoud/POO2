@@ -16,4 +16,8 @@
 * [withRubyLists](algorithmic/queue/withList)
 * [withJsArray](algorithmic/queue/withJsArray)
 
+### Trees
+
+* [searchTree](algorithmic/tree/search)
+
 ## Design patterns
