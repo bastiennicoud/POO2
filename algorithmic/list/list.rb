@@ -26,6 +26,7 @@ class List
       tmp       = Node.new(nodeValue)
       tmp.next  = nil
       tmp.prev  = @lastNode
+      @lastNode.next = tmp
       @lastNode = tmp
     end
   end
@@ -77,7 +78,7 @@ class List
       return tmp
     else
       tmp = @firstNode.value
-      if (@firstNode.next == @lastNode)
+      if (@firstNode.next.value == @lastNode.value)
         @firstNode      = @lastNode
         @lastNode       = nil
         @firstNode.prev = nil
