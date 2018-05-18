@@ -12,7 +12,8 @@
 
 ### Queue
 
-* [withRubyArrays](algorithmic/queue/usingArrays)
-* [withRubyLists](algorithmic/queue/usingLists)
+* [withRubyArrays](algorithmic/queue/withArray)
+* [withRubyLists](algorithmic/queue/withList)
+* [withJsArray](algorithmic/queue/withJsArray)
 
 ## Design patterns
