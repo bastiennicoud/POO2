@@ -10,17 +10,29 @@ class WordSearchTree
   end
 
   def add_word(word)
+    tmp = @root
     word.split("").each do |char|
-      # Check if the char exists une the childs nodes
-      # Create the char in the root childrends
-      # pass to the next char
+      if (tmp.childrens.key?(char))
+        tmp = tmp.childrens[char]
+      else
+        tmp.add_children(char)
+        tmp = tmp.childrens[char]
+      end
     end
   end
 
-  def search()
-
-    # When the word is found
-    recompose_word(leafNode, accumulator = '')
+  def search(needle)
+    tmp = @root
+    needle.split("").each do |char|
+      if (tmp.childrens.key?(char))
+        tmp = tmp.childrens[char]
+        if (tmp.childrens.empty?)
+          return true
+        end
+      else
+        return false
+      end
+    end
   end
 
   def recompose_word(leafNode, accumulator)

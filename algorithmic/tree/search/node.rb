@@ -1,15 +1,14 @@
 class Node
 
-  def initialize(val, parent = nil, childrens = {})
-    @parent = parent
-    @childrens = childrens
+  def initialize(val, childrens = {})
     @value = val
+    @childrens = childrens
   end
 
-  attr_accessor(:parent, :value)
+  attr_accessor(:childrens, :value)
 
   def add_children(char)
-    @childrens[char] = Node.new(char, self)
+    @childrens[char] = Node.new(char)
   end
 
 end

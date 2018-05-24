@@ -10,6 +10,16 @@ def parse_file(path)
   return words
 end
 
-searchable = WordSearchTree.new(parse_file('./functions.txt'))
+tree_index = WordSearchTree.new(parse_file('./functions.txt'))
 
-searchable.search(input)
+puts "Entrez le mot a rechercher :"
+
+needle = gets
+
+puts "Votre mot : #{needle}"
+
+if (tree_index.search(needle))
+  puts "Le mot recherché existe"
+else
+  puts "Le mot n'exists pas"
+end
