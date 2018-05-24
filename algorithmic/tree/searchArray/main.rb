@@ -1,4 +1,3 @@
-require_relative('word_search_tree')
 require 'benchmark'
 
 def parse_file(path)
@@ -11,19 +10,19 @@ def parse_file(path)
   return words
 end
 
-tree_index = WordSearchTree.new(parse_file('./functions.txt'))
+tree_index = parse_file('../search/functions.txt')
 
 Benchmark.bm do |x|
   x.report('Search agentenabled in an array :') do
-    tree_index.search("agentenabled")
+    tree_index.include?("agentenabled")
   end
   x.report('Search attraccessorwithdefault in an array :') do
-    tree_index.search("attraccessorwithdefault")
+    tree_index.include?("attraccessorwithdefault")
   end
   x.report('Search xchr in an array :') do
-    tree_index.search("xchr")
+    tree_index.include?("xchr")
   end
   x.report('Search tryenter in an array :') do
-    tree_index.search("tryenter")
+    tree_index.include?("tryenter")
   end
 end
