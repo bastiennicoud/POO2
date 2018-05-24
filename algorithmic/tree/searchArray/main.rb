@@ -12,17 +12,17 @@ end
 
 tree_index = parse_file('../search/functions.txt')
 
-Benchmark.bm do |x|
-  x.report('Search agentenabled in an array :') do
+Benchmark.bmbm do |x|
+  x.report("Search 'agentenabled' in an array :           ") do
     tree_index.include?("agentenabled")
   end
-  x.report('Search attraccessorwithdefault in an array :') do
+  x.report("Search 'attraccessorwithdefault' in an array :") do
     tree_index.include?("attraccessorwithdefault")
   end
-  x.report('Search xchr in an array :') do
+  x.report("Search 'xchr' in an array :                   ") do
     tree_index.include?("xchr")
   end
-  x.report('Search tryenter in an array :') do
+  x.report("Search 'tryenter' in an array :               ") do
     tree_index.include?("tryenter")
   end
 end

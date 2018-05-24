@@ -34,6 +34,22 @@ class WordSearchTree
       end
     end
   end
+  
+  def predict(needle)
+    tmp = @root
+    needle.split("").each do |char|
+      if (tmp.childrens.key?(char))
+        tmp = tmp.childrens[char]
+        if (tmp.childrens.empty?)
+          return needle
+        else
+          # Return the prediction
+        end
+      else
+        return []
+      end
+    end
+  end
 
   def recompose_word(leafNode, accumulator)
     accumulator = `#{leafNode.value}#{accumulator}`

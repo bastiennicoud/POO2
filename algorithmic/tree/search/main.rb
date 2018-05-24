@@ -12,18 +12,31 @@ def parse_file(path)
 end
 
 tree_index = WordSearchTree.new(parse_file('./functions.txt'))
+array_index = parse_file('../search/functions.txt')
 
-Benchmark.bm do |x|
-  x.report('Search agentenabled in an array :') do
+Benchmark.bmbm do |x|
+  x.report("Search 'agentenabled' in an array :           ") do
+    array_index.include?("agentenabled")
+  end
+  x.report("Search 'attraccessorwithdefault' in an array :") do
+    array_index.include?("attraccessorwithdefault")
+  end
+  x.report("Search 'xchr' in an array :                   ") do
+    array_index.include?("xchr")
+  end
+  x.report("Search 'tryenter' in an array :               ") do
+    array_index.include?("tryenter")
+  end
+  x.report("Search 'agentenabled' in a tree :           ") do
     tree_index.search("agentenabled")
   end
-  x.report('Search attraccessorwithdefault in an array :') do
+  x.report("Search 'attraccessorwithdefault' in a tree :") do
     tree_index.search("attraccessorwithdefault")
   end
-  x.report('Search xchr in an array :') do
+  x.report("Search 'xchr' in a tree :                   ") do
     tree_index.search("xchr")
   end
-  x.report('Search tryenter in an array :') do
+  x.report("Search 'tryenter' in a tree :               ") do
     tree_index.search("tryenter")
   end
 end
