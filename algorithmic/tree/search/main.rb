@@ -50,3 +50,10 @@ Benchmark.bmbm do |x|
     tree_index.search("tryenter")
   end
 end
+
+puts "Predict the word end."
+puts "Type letters :"
+
+needle = gets
+
+puts tree_index.predict(needle)

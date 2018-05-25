@@ -15,18 +15,19 @@ class WordSearchTree
   # Index a word in the tree
   def index_word(word)
     wordArray = word.split('')
-    add_child(@root, wordArray)
+    add_child(@root, wordArray, word)
   end
 
   # Recursively add the letters of the word in the tree
-  def add_child(base_node, word)
-    letter = word.shift()
+  def add_child(base_node, wordArray, word)
+    letter = wordArray.shift()
     if (letter)
+      base_node.words << word
       if (base_node.childrens.key?(letter))
-        add_child(base_node.childrens[letter], word)
+        add_child(base_node.childrens[letter], wordArray, word)
       else
         base_node.add_children(letter)
-        add_child(base_node.childrens[letter], word)
+        add_child(base_node.childrens[letter], wordArray, word)
       end
     else
       base_node.final = true
@@ -53,17 +54,24 @@ class WordSearchTree
 
   # Return all possible ends for the needle
   def predict(needle)
-    tmp = @root
-    needle.split("").each do |char|
-      if (tmp.childrens.key?(char))
-        tmp = tmp.childrens[char]
-        if (tmp.childrens.empty?)
-          return needle
-        else
-          # Return the prediction
-        end
+    chars = needle.split('')
+    return move_to(@root, chars, needle)
+  end
+
+  # Move in the array to the last char of the needle
+  def move_to(base_node, chars, word)
+    letter = chars.shift()
+    if (letter)
+      if (base_node.childrens.key?(letter))
+        move_to(base_node.childrens[letter], chars, word)
       else
-        return []
+        return "No results"
+      end
+    else
+      if (base_node.final)
+        return word
+      else
+        return base_node.words
       end
     end
   end
