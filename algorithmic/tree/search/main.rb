@@ -1,6 +1,7 @@
 require_relative('word_search_tree')
 require 'benchmark'
 
+puts "Parsing file"
 def parse_file(path)
   words = []
   f = File.open(path, "r")
@@ -11,10 +12,15 @@ def parse_file(path)
   return words
 end
 
-tree_index = WordSearchTree.new(parse_file('./functions.txt'))
+puts "Creating array index"
 array_index = parse_file('../search/functions.txt')
+puts "Creating tree index"
+tree_index = WordSearchTree.new(parse_file('./functions.txt'))
 
 Benchmark.bmbm do |x|
+  #
+  # Search in arrays
+  #
   x.report("Search 'agentenabled' in an array :           ") do
     array_index.include?("agentenabled")
   end
@@ -27,6 +33,10 @@ Benchmark.bmbm do |x|
   x.report("Search 'tryenter' in an array :               ") do
     array_index.include?("tryenter")
   end
+  
+  #
+  # Search in tree
+  #
   x.report("Search 'agentenabled' in a tree :           ") do
     tree_index.search("agentenabled")
   end

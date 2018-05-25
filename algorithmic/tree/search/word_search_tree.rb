@@ -5,19 +5,26 @@ class WordSearchTree
   def initialize(elements = [])
     @root = Node.new(nil)
     elements.each do |el|
-      add_word(el)
+      index_word(el)
     end
   end
-
-  def add_word(word)
-    tmp = @root
-    word.split("").each do |char|
-      if (tmp.childrens.key?(char))
-        tmp = tmp.childrens[char]
+  
+  def index_word(word)
+    wordArray = word.split('')
+    add_child(@root, wordArray)
+  end
+  
+  def add_child(base_node, word)
+    letter = word.shift()
+    if (letter)
+      if (base_node.childrens.key?(letter))
+        add_child(base_node.childrens[letter], word)
       else
-        tmp.add_children(char)
-        tmp = tmp.childrens[char]
+        base_node.add_children(letter)
+        add_child(base_node.childrens[letter], word)
       end
+    else
+      return
     end
   end
 
@@ -48,15 +55,6 @@ class WordSearchTree
       else
         return []
       end
-    end
-  end
-
-  def recompose_word(leafNode, accumulator)
-    accumulator = `#{leafNode.value}#{accumulator}`
-    if leafNode.parent.nil?
-      accumulator
-    else
-      recompose_word(leafNode.parent, accumulator)
     end
   end
 
