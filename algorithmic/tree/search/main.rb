@@ -33,7 +33,7 @@ Benchmark.bmbm do |x|
   x.report("Search 'tryenter' in an array :               ") do
     array_index.include?("tryenter")
   end
-  
+
   #
   # Search in tree
   #
