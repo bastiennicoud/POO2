@@ -5,10 +5,11 @@ class Node
   # * Initialize childrens
   def initialize(val, childrens = {})
     @value = val
+    @final = false
     @childrens = childrens
   end
 
-  attr_accessor(:childrens, :value)
+  attr_accessor(:childrens, :value, :final)
 
   # Add a new char to the childrens array
   def add_children(char)

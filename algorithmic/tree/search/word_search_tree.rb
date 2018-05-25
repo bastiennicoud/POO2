@@ -29,6 +29,7 @@ class WordSearchTree
         add_child(base_node.childrens[letter], word)
       end
     else
+      base_node.final = true
       return
     end
   end
@@ -39,11 +40,13 @@ class WordSearchTree
     needle.split("").each do |char|
       if (tmp.childrens.key?(char))
         tmp = tmp.childrens[char]
-        if (tmp.childrens.empty?)
-          return true
+        if (tmp.childrens.empty? && tmp.final == true)
+          true
+        else
+          false
         end
       else
-        return false
+        false
       end
     end
   end
