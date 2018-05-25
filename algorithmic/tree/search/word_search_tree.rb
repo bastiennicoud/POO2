@@ -42,12 +42,12 @@ class WordSearchTree
       if (tmp.childrens.key?(char))
         tmp = tmp.childrens[char]
         if (tmp.childrens.empty? && tmp.final == true)
-          true
+          return true
         else
-          false
+          return false
         end
       else
-        false
+        return false
       end
     end
   end
