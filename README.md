@@ -21,3 +21,5 @@
 * [searchTree](algorithmic/tree/search)
 
 ## Design patterns
+
+* [Factory](design_patterns/factory)
