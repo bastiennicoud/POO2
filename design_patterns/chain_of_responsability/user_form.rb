@@ -6,13 +6,13 @@ class UserForm < Form
     super
     # Fill the fields you want by default in our form
     @fields = {
-      :name => [:required],
-      :email => [:required, :email]
+      name: [:required],
+      email: [:required, :email]
     }
   end
 
   # Adds new fielt to the forn dynamically
-  def add_field name, validations
+  def add_field(name, validations)
     @fields[name] = validations
   end
 

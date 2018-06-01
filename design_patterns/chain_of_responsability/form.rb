@@ -1,9 +1,12 @@
+Dir.glob("./rules/**/*.rb").each {|file| require file}
+
 class Form
 
   def initialize
+    # Declares all the validators usable by the Form validator
     @validators = {
-      :required => RequiredRule.check(v),
-      :email    => EmailRule.check(v)
+      required: RequiredRule.new,
+      email: EmailRule.new
     }
     @values = {}
   end
@@ -11,8 +14,8 @@ class Form
   # Ask each form fields to the user
   def display_form
     @fields.each do |name, validations|
-      puts "Veuillez renseigner votre #{k}"
-      @values[k] = gets.chomp
+      puts "Veuillez renseigner votre #{name}"
+      @values[name] = gets.chomp
     end
   end
 
@@ -22,14 +25,14 @@ class Form
     @fields.each do |name, validations|
       valid |= validate(name, validations)
     end
-    valid
+    !valid
   end
 
-  # Performs a validation
-  def validate name, validations
+  # Performs a field validation
+  def validate (name, validations)
     valid = false
     validations.each do |v|
-      valid |= @validators[v] @values[name]
+      valid |= @validators[v].check(@values[name])
     end
     valid
   end

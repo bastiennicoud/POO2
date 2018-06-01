@@ -1,6 +1,7 @@
 class RequiredRule
 
-  def self.check v
+  def check v
+    v.empty?
   end
 
 end
