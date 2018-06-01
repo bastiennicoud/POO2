@@ -23,4 +23,4 @@
 ## Design patterns
 
 * [Factory](design_patterns/factory)
-* [Chain of responsability](design_patterns/chain_of_responsability)
+* [Ruby chain of responsability](design_patterns/chain_of_responsability/ruby)
