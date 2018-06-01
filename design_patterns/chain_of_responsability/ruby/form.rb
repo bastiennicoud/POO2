@@ -13,6 +13,11 @@ class Form
     @values = {}
   end
 
+  # Adds new field to the forn dynamically
+  def add_field(name, validations)
+    @fields[name] = validations
+  end
+
   # Ask each form fields to the user
   def display_form
     @fields.each do |name, validations|
