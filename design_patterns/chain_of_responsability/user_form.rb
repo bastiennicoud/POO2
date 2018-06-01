@@ -11,7 +11,7 @@ class UserForm < Form
     }
   end
 
-  # Adds new fielt to the forn dynamically
+  # Adds new field to the forn dynamically
   def add_field(name, validations)
     @fields[name] = validations
   end

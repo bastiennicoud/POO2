@@ -4,10 +4,12 @@ class Form
 
   def initialize
     # Declares all the validators usable by the Form validator
+    # In real case it can be declared in config
     @validators = {
-      required: RequiredRule.new,
-      email: EmailRule.new
+      required: RequiredRule,
+      email: EmailRule
     }
+    # A hash to store the form values
     @values = {}
   end
 
