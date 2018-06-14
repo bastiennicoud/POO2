@@ -1,9 +1,13 @@
 class ArraySearcher
-  def initialize needle
-    @needle = needle
+
+  attr_reader :results
+
+  def initialize length
+    @length = length
     @results = []
   end
 
-  def visit
+  def visit word
+    @results << word if word.size == length
   end
 end
