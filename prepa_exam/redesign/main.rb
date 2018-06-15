@@ -1,5 +1,5 @@
 # MAIN
-require_relative 'validator.rb'
+require_relative 'validator'
 
 source = ARGV[0]
 

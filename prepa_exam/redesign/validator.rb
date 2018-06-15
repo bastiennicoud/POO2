@@ -1,4 +1,4 @@
-Dir.glob("./drivers/**/*.rb").each {|file| require file}
+require_relative 'driver'
 Dir.glob("./validations/**/*.rb").each {|file| require file}
 
 class Validator
@@ -6,11 +6,8 @@ class Validator
   # Initialize new validator passing it the source
   def initialize source
     @messages = []
-    # Define the available sources drivers
-    @source_drivers = [
-      WebSource,
-      FileSource
-    ]
+    # Loads the driver
+    @driver = Driver.create(source)
     # Define the validations cheks you want
     @validations = [
       NameStartsByCapitalRule,
@@ -25,10 +22,6 @@ class Validator
 
   # Loads the source by checking the diffrent drivers
   def load_source
-    # Each source driver will check if he can load this source
-    @source_drivers.each do |driver|
-      @driver = driver.new(@source) if driver.check_source(@source)
-    end
     # Loads the source with the selected driver
     @datas = @driver.load_source
   end
