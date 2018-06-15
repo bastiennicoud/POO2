@@ -1,5 +1,4 @@
 require_relative 'driver'
-Dir.glob("./validations/**/*.rb").each {|file| require file}
 
 class Validator
 
@@ -9,15 +8,25 @@ class Validator
     # Loads the driver
     @driver = Driver.create(source)
     # Define the validations cheks you want
-    @validations = [
-      NameStartsByCapitalRule,
-      FirstnameStartsByCapitalRule,
-      MaxPartsRule
-    ]
-    # Sets the source
-    @source = source
+    @validations = []
+    set_validators
     # Performs the loading of the source
-    self.load_source
+    load_source
+  end
+
+  def set_validators
+    self.class.validators.each {|rule_name| add_validation_rule(rule_name)}
+  end
+
+  class << self
+    def validation rule_name
+      (@validators ||= []) << rule_name
+    end
+    attr_reader :validators
+  end
+
+  def add_validation_rule rule
+    @validations << rule
   end
 
   # Loads the source by checking the diffrent drivers
