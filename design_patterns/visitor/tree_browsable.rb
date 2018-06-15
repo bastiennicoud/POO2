@@ -4,16 +4,16 @@ require_relative('../../algorithmic/tree/search/node')
 class TreeBrowsable < WordSearchTree
 
   class Node < Node
-    def browse partial_word
+    def browse visitor, partial_word
       @children.each_with_index do |child, index|
         # If the  child don't exist, pass th the next iteration
         next unless child
         # Chek if is a word
         if child.final
-          puts partial_word + (BASE+index).chr
+          visitor.visit(partial_word + (BASE+index).chr)
         end
         # Recurse the call
-        child.browse (partial_word + (BASE+index).chr)
+        child.browse (visitor ,partial_word + (BASE+index).chr)
       end
     end
   end
