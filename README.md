@@ -26,3 +26,7 @@
 * [Ruby chain of responsability](design_patterns/chain_of_responsability/ruby)
 * [Php chain of responsability](design_patterns/chain_of_responsability/ruby)
 * [Ruby visitor](design_patterns/visitor)
+
+#### Exam example
+
+* [Exercice](prepa_exam/redesign)
