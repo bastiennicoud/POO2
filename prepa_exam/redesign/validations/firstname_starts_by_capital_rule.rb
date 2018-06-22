@@ -1,4 +1,4 @@
-class FirstnameStartsByCapitalRule
+class FirstNameStartsByCapitalRule
 
   def initialize data_parts
     @data_parts = data_parts
